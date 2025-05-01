@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 public class CategoryController {
 
@@ -21,7 +22,7 @@ public class CategoryController {
     @PostMapping("categories")
     public List<Category> addCategory(@RequestBody Category category) {
         if (category.getId() != null) {
-            throw new RuntimeException("err_category_id_not_null");
+            throw new RuntimeException("ERROR_CANNOT_ADD_WITH_ID");
         }
         categoryRepository.save(category);
         return categoryRepository.findAll();
@@ -33,3 +34,6 @@ public class CategoryController {
         return categoryRepository.findAll();
     }
 }
+
+// File --> Settings --> Build,Execution,Deployment -> Compiler --> Annotation Processer -->
+// --> Default pealt: Projekti nimi (veebipood --> Processor Path pealt Obtain processeros...
